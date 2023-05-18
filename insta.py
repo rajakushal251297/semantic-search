@@ -38,4 +38,6 @@ query=st.text_input("Enter your query")
 if st.button("Search"):
     q = model.encode([query]).tolist()
     result = index.query(q, top_k=2, includeMetadata=True)
-    st.write(result)
+    for i in result["match"]:
+        result=i["metadata"]["question1"]
+        st.write(result)
